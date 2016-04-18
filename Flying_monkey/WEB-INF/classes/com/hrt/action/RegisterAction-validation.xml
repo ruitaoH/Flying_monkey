@@ -1,0 +1,48 @@
+<!DOCTYPE validators PUBLIC
+"-//Apache Struts//XWork Validator 1.0.2//EN"
+"http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+<validators>
+
+    <field name="user.nickname">
+        <field-validator type="requiredstring">
+            <message></message>
+        </field-validator>
+    </field>
+
+    <field name="user.email">
+        <field-validator type="requiredstring">
+            <message></message>
+        </field-validator>
+    </field>
+
+    <field name="user.password">
+        <field-validator type="requiredstring">
+            <message></message>
+        </field-validator>
+    </field>
+
+    <field name="user.marjor">
+        <field-validator type="requiredstring">
+            <message></message>
+        </field-validator>
+    </field>
+
+    <field name="user.phone">
+        <field-validator type="requiredstring">
+            <message></message>
+        </field-validator>
+    </field>
+
+    <field name="user.weixin">
+        <field-validator type="requiredstring">
+            <message></message>
+        </field-validator>
+    </field>
+
+    <field name="user.qq">
+        <field-validator type="requiredstring">
+            <message></message>
+        </field-validator>
+    </field>
+
+</validators>
