@@ -48,20 +48,21 @@
         <label><p>手机:</p><input name="phone" type="text" placeholder="重要, 方便他人联系你"></label>
         <label><p>QQ/微信:</p><select id="contactMethod">
             <option value="qq">QQ</option>
-            <option value="wechat">微信</option>
+            <option value="weixin">微信</option>
         </select></label><!--改动过-->
-        <label><p>QQ:</p><input id="qq" name="qq" type="text" placeholder="请输入QQ:"></label>
+        <label id="label"><p>QQ:</p><input id="qq" name="qq" type="text" placeholder="请输入QQ:"></label>
         <a class="button" id="register-btn" onclick="registerCheck();">注册</a>
     </form>
 
-    <s:debug />
+    <%--<s:debug />--%>
 </div>
 <!--改动过-->
 <script type="text/javascript">
     (function () {
         var select = document.getElementById('contactMethod');
         var form = document.getElementById('form');
-        var label = document.createElement('label');
+//        var label = document.createElement('label');
+        var label = document.getElementById("label");
         var name_cn;
         select.onchange = function () {
             if (select.value == 'qq') {

@@ -43,10 +43,10 @@ function registerCheck() {
     }
 
     var select = document.getElementById("contactMethod");
-    if(select.selectedOptions[0].value == "wechat"){
-        var wechat = register.weixin;
+    if(select.selectedOptions[0].value == "weixin"){
+        var weixin = register.weixin;
 
-        if(!wechat.value){
+        if(!weixin.value){
             warn('请填写微信号!');
             return false;
         }

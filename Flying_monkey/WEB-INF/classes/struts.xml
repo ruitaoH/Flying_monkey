@@ -14,67 +14,67 @@
     <!--允许上传的最大照片2M,这是KB为单位,1024 * 1024 * 2-->
     <constant name="struts.multipart.maxSize" value="2097152" />
 
-    <package name="Flying_monkey" namespace="/" extends="struts-default">
-        <default-action-ref name="index" />
+    <!--<package name="Flying_monkey" namespace="/" extends="struts-default">-->
+        <!--<default-action-ref name="index" />-->
 
-        <global-results>
-            <result name="mainpage">/index.jsp</result>
-        </global-results>
+        <!--<global-results>-->
+            <!--<result name="mainpage">/index.jsp</result>-->
+        <!--</global-results>-->
 
-        <action name="index">
-            <result type="dispatcher">
-                /index.jsp
-            </result>
-        </action>
-
-        <action name="actionSupport">
-            <result type="chain">
-                <param name="actionName">login*</param>
-                <param name="namespace">/login</param>
-            </result>
-        </action>
-    </package>
-
-    <package name="struts2" namespace="/" extends="struts-default">
-        <action name="upload" class="com.hrt.action.Action">
-
-            <!--限制图片的格式和大小-->
-            <interceptor-ref name="fileUpload">
-                <param name="allowedTypes">
-                    image/bmp,image/gif,image/jpeg,image/jpg
-                </param>
-                <param name="maximumSize">
-                    1024102400
-                </param>
-            </interceptor-ref>
-            <!--默认的拦截器-->
-            <interceptor-ref name="defaultStack" />
-
-            <result>
-                /WEB-INF/jsp/uploadResult.jsp
-            </result>
-            <result name="input">
-                /index.jsp
-            </result>
-        </action>
-
-        <!--<action name="hello" class="com.hrt.action.Action2">-->
-            <!--<result>-->
-                <!--/WEB-INF/jsp/login.jsp-->
+        <!--<action name="index">-->
+            <!--<result type="dispatcher">-->
+                <!--/index.jsp-->
             <!--</result>-->
         <!--</action>-->
-    </package>
-    
-    <package name="login" extends="struts-default" namespace="/login">
-        <action name="login*" class="com.hrt.action.Action3">
-            <result type="dispatcher">
-                /WEB-INF/jsp/login.jsp
-            </result>
-            <result name="error">
-                /index.jsp
-            </result>
-        </action>
-    </package>
+
+        <!--<action name="actionSupport">-->
+            <!--<result type="chain">-->
+                <!--<param name="actionName">login*</param>-->
+                <!--<param name="namespace">/login</param>-->
+            <!--</result>-->
+        <!--</action>-->
+    <!--</package>-->
+
+    <!--<package name="struts2" namespace="/" extends="struts-default">-->
+        <!--<action name="upload" class="com.hrt.action.Action">-->
+
+            <!--&lt;!&ndash;限制图片的格式和大小&ndash;&gt;-->
+            <!--<interceptor-ref name="fileUpload">-->
+                <!--<param name="allowedTypes">-->
+                    <!--image/bmp,image/gif,image/jpeg,image/jpg-->
+                <!--</param>-->
+                <!--<param name="maximumSize">-->
+                    <!--1024102400-->
+                <!--</param>-->
+            <!--</interceptor-ref>-->
+            <!--&lt;!&ndash;默认的拦截器&ndash;&gt;-->
+            <!--<interceptor-ref name="defaultStack" />-->
+
+            <!--<result>-->
+                <!--/WEB-INF/jsp/uploadResult.jsp-->
+            <!--</result>-->
+            <!--<result name="input">-->
+                <!--/index.jsp-->
+            <!--</result>-->
+        <!--</action>-->
+
+        <!--&lt;!&ndash;<action name="hello" class="com.hrt.action.Action2">&ndash;&gt;-->
+            <!--&lt;!&ndash;<result>&ndash;&gt;-->
+                <!--&lt;!&ndash;/WEB-INF/jsp/login.jsp&ndash;&gt;-->
+            <!--&lt;!&ndash;</result>&ndash;&gt;-->
+        <!--&lt;!&ndash;</action>&ndash;&gt;-->
+    <!--</package>-->
+    <!---->
+    <!--<package name="login" extends="struts-default" namespace="/login">-->
+        <!--<action name="login*" class="com.hrt.action.Action3">-->
+            <!--<result type="dispatcher">-->
+                <!--/WEB-INF/jsp/login.jsp-->
+            <!--</result>-->
+            <!--<result name="error">-->
+                <!--/index.jsp-->
+            <!--</result>-->
+        <!--</action>-->
+    <!--</package>-->
 
 
     <!--项目正式开始-->
@@ -177,8 +177,12 @@
             <!--拦截器进行数据验证-->
 
             <!--返回是否是ok－－－>然后前端显示发布成功-->
-            <result type="json">
-                <param name="root">responseJson</param>
+            <!--<result type="json">-->
+                <!--<param name="root">responseJson</param>-->
+            <!--</result>-->
+            <!--方便演示先回到首页-->
+            <result>
+                /index.jsp
             </result>
 
             <!--???发布有没有可能失败-->
