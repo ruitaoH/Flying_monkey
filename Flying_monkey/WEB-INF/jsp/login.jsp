@@ -11,6 +11,37 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
+<%--<!DOCTYPE html>--%>
+<%--<html>--%>
+<%--<head>--%>
+    <%--<base href="<%=basePath %>" />--%>
+    <%--<meta http-equiv=Content-Type content="text/html;charset=utf-8">--%>
+    <%--<meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">--%>
+    <%--<meta name="viewport" content="width=device-width">--%>
+    <%--<meta name="author" content="Bingyan Studio">--%>
+    <%--<title>试试--登陆</title>--%>
+    <%--<link rel="stylesheet" type="text/css" href="css/styleCommon.css">--%>
+    <%--<link rel="stylesheet" type="text/css" href="css/styleLogin.css">--%>
+    <%--<script type="text/javascript" src="js/md5.js"></script>--%>
+    <%--<script type="text/javascript" src="js/checkForm.js"></script>--%>
+    <%--<script type="text/javascript" src="js/login.js"></script>--%>
+<%--</head>--%>
+<%--<body>--%>
+<%--<div class="container">--%>
+    <%--<form name="login" action="log/login" method="POST">--%>
+        <%--<label class="heading">试试 登陆</label>--%>
+        <%--<label><p>User Name:</p><input type="email" name="email" placeholder="Please enter your E-mail"></label>--%>
+        <%--<label><p>Passoword:</p><input id="pwd-input" type="password" placeholder="Please enter your password"></label>--%>
+        <%--<label style="display: none;"><input id="pwd-md5" name="password" type="password"></label>--%>
+        <%--<a class="button" id="login-btn" onclick="loginCheck();">登陆</a>--%>
+
+        <%--&lt;%&ndash;这里登陆不了!!!&ndash;%&gt;--%>
+        <%--<s:debug />--%>
+    <%--</form>--%>
+<%--</div>--%>
+<%--</body>--%>
+<%--</html>--%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,18 +58,22 @@
     <script type="text/javascript" src="js/login.js"></script>
 </head>
 <body>
+<header><!--改动过-->
+    <h1 class="heading">登陆</h1>
+    <a id="back" href="index.jsp">返回</a>
+</header>
 <div class="container">
     <form name="login" action="log/login" method="POST">
-        <label class="heading">试试 登陆</label>
-        <label><p>User Name:</p><input type="email" name="email" placeholder="Please enter your E-mail"></label>
-        <label><p>Passoword:</p><input id="pwd-input" type="password" placeholder="Please enter your password"></label>
+        <label class="heading"></label>
+        <label><p>邮箱:</p><input type="email" name="email" placeholder="请输入登录帐号"></label><!--改动过-->
+        <label><p>密码:</p><input id="pwd-input" type="password" placeholder="请输入密码"></label>
         <label style="display: none;"><input id="pwd-md5" name="password" type="password"></label>
+        <a id="noAccount" href="forword/toRegister">没有账号?点击注册</a><!--改动过-->
         <a class="button" id="login-btn" onclick="loginCheck();">登陆</a>
-
-        <%--这里登陆不了!!!--%>
-        <s:debug />
     </form>
 </div>
 </body>
 </html>
+
+
 

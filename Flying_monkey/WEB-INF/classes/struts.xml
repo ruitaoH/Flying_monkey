@@ -14,8 +14,6 @@
     <!--允许上传的最大照片2M,这是KB为单位,1024 * 1024 * 2-->
     <constant name="struts.multipart.maxSize" value="2097152" />
 
-    <!--<constant name="struts.multipart.saveDir" value="/home/haoruitao/IdeaProjects/Flying_monkey/web/images" />-->
-
     <package name="Flying_monkey" namespace="/" extends="struts-default">
         <default-action-ref name="index" />
 
@@ -114,12 +112,13 @@
 
             <!--注册先不考虑失败-->
             <!--数据失败带着错误信息回到注册页面-->
-            <result name="input">
+            <result name="error">
                 /WEB-INF/jsp/register.jsp
             </result>
         </action>
     </package>
 
+    <!--检测是否登陆-->
     <package name="checklogin" namespace="/checklogin" extends="json-default">
         <action name="checkPublish" class="com.hrt.action.CheckAction" method="check">
             <!--成功跳转到发布界面-->
@@ -208,19 +207,30 @@
             </result>
         </action>
     </package>
+
+    <!--发出尝试申请-->
+    <package name="try" namespace="/try" extends="json-default">
+        <action name="try" class="com.hrt.action.TryAction">
+            <result type="json" />
+        </action>
+    </package>
+
+    <package name="personal" namespace="/personal" extends="json-default">
+        <action name="personal" class="com.hrt.action.PersonalAction">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+    </package>
+    
+    <!--这里要处置 我申请的 和 我收到的申请-->
     
     <!--各种页面跳转-->
-    <!--<package name="forword" namespace="/forword" extends="struts-default">-->
-        <!--<action name="toPublish">-->
-            <!--<result>-->
-                <!--/WEB-INF/jsp/issue.jsp-->
-            <!--</result>-->
-        <!--</action>-->
-        <!---->
-        <!--<action name="toPersonal">-->
-            <!--<result>-->
-                <!--/WEB-INF/jsp/personCenter.jsp-->
-            <!--</result>-->
-        <!--</action>-->
-    <!--</package>-->
+    <package name="forword" namespace="/forword" extends="struts-default">
+        <action name="toRegister">
+            <result>
+                /WEB-INF/jsp/register.jsp
+            </result>
+        </action>
+    </package>
 </struts>

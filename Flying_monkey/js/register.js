@@ -7,13 +7,13 @@ function registerCheck() {
 
     var pwdInput = document.getElementById('pwd-input');
     var pwdMd5 = register.password;
-    if (checkIsEmpty(password, '请输入昵称!')) {
+    if (checkIsEmpty(pwdInput, '请输入密码!')) {
         return false;
-    } else if (password.value.length < 6 || password.value.length > 16) {
+    } else if (pwdInput.value.length < 6 || pwdInput.value.length > 16) {
         warn('密码长度不能超过16位, 且要大于5位');
         return false;
     } else {
-        pwdMd5.value = faultylabs.MD5(pwdInput);
+        pwdMd5.value = faultylabs.MD5(pwdInput.value);
     }
 
     var sex = register.sex;
@@ -24,7 +24,7 @@ function registerCheck() {
     var email = register.email;
     if (checkIsEmpty(email, '请输入邮箱!')) {
         return false;
-    } else if (!/[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-z]+/.test(user.value)) {
+    } else if (!/[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-z]+/.test(email.value)) {
         warn('请输入有效的邮箱名!');
         return false;
     }
@@ -42,15 +42,36 @@ function registerCheck() {
         return false;
     }
 
-    var wechat = register.weixin;
-    var qq = register.qq;
-    if(!wechat.value && !qq.value){
-        warn('请填写微信号或者QQ号!');
-        return false;
-    }else if(!/[0-9]{5,}/.test(qq.value)){
-        warn('请填写有效的QQ号!');
-        return false;
+    var select = document.getElementById("contactMethod");
+    if(select.selectedOptions[0].value == "wechat"){
+        var wechat = register.weixin;
+
+        if(!wechat.value){
+            warn('请填写微信号!');
+            return false;
+        }
+    }else if(select.selectedOptions[0].value == "qq"){
+        var qq = register.qq;
+
+        if(!qq.value){
+            warn('请填写QQ号!');
+            return false;
+        }else if(!/[0-9]{5,}/.test(qq.value)){
+            warn('请填写有效的QQ号!');
+            return false;
+        }
     }
+
+    //这里这么验证会炸的!!!
+    //var wechat = register.weixin;
+    //var qq = register.qq;
+    //if(!wechat.value && !qq.value){
+    //    warn('请填写微信号或者QQ号!');
+    //    return false;
+    //}else if(!/[0-9]{5,}/.test(qq.value)){
+    //    warn('请填写有效的QQ号!');
+    //    return false;
+    //}
 
     register.submit();
 }
