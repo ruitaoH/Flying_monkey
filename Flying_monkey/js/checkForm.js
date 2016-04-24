@@ -12,24 +12,30 @@ function checkIsEmpty(feild, warnText){
 function warn(text){
     var warnWrap = document.createElement('div');
     warnWrap.className = 'warn-wrap';
-    var warnText = document.createElement('p');
-    var textNode = document.createTextNode(text);
-    warnText.appendChild(textNode);
-    warnWrap.appendChild(warnText);
-    var btn = document.createElement('a');
-    btn.innerHTML = '好';
-    warnWrap.appendChild(btn);
+    warnWrap.innerHTML = '<div class="warn"><p>'+text+'</p ><a onclick="closeWarn(this.parentNode.parentNode);">好</a ></div>';
     document.body.appendChild(warnWrap);
     var all = document.body.children;
     for(var i=0;i<all.length;i++){
         all[i].className += ' blur';
     }
-    warnWrap.className = warnWrap.className.replace(/\s*blur\s*/, '')
-    warnWrap.style.opacity = '1';
-    btn.onclick = function(){
-        document.body.removeChild(warnWrap);
-        for(var i=0;i<all.length;i++) {
-            all[i].className = all[i].className.replace(/\s*blur\s*/, '');
-        }
+    warnWrap.className = warnWrap.className.replace(/\s*blur\s*/, '');
+}
+//关闭警告框
+function closeWarn(warn){
+    document.body.removeChild(warn);
+    var all = document.body.children;
+    for(var i=0;i<all.length;i++) {
+        all[i].className = all[i].className.replace(/\s*blur\s*/, '');
     }
+}
+
+//返回一个XMLHTTPRequest
+function getXmlHttp() {
+    var xmlHttp = null;
+    if (window.XMLHttpRequest) {
+        xmlHttp = new XMLHttpRequest();
+    } else {
+        xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+    }
+    return xmlHttp;
 }

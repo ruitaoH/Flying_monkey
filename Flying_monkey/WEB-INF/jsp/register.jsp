@@ -46,23 +46,19 @@
         <label style="display: none;"><input name="password" id="pwd-md5" type="password"></label>
         <label><p>专业:</p><input name="major" type="text" placeholder="如XX院系XX专业"></label>
         <label><p>手机:</p><input name="phone" type="text" placeholder="重要, 方便他人联系你"></label>
-        <label><p>QQ/微信:</p><select id="contactMethod">
+        <label><p>QQ/微信:</p><select id="contactMethod" style="width:50%;">
             <option value="qq">QQ</option>
             <option value="weixin">微信</option>
         </select></label><!--改动过-->
-        <label id="label"><p>QQ:</p><input id="qq" name="qq" type="text" placeholder="请输入QQ:"></label>
         <a class="button" id="register-btn" onclick="registerCheck();">注册</a>
     </form>
-
-    <%--<s:debug />--%>
 </div>
 <!--改动过-->
 <script type="text/javascript">
     (function () {
         var select = document.getElementById('contactMethod');
         var form = document.getElementById('form');
-//        var label = document.createElement('label');
-        var label = document.getElementById("label");
+        var label = document.createElement('label');
         var name_cn;
         select.onchange = function () {
             if (select.value == 'qq') {
@@ -73,6 +69,7 @@
             label.innerHTML = '<p>' + name_cn + '</p><input id="' + select.value + '" name="' + select.value + '" type="text" placeholder="请输入' + name_cn + '">';
             form.insertBefore(label, document.getElementById('register-btn'));
         }
+        select.onchange();
     })();
 </script>
 </body>

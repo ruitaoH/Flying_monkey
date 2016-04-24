@@ -17,14 +17,18 @@ function registerCheck() {
     }
 
     var sex = register.sex;
-    if(checkIsEmpty(sex,'请选择性别!')){
+    //if(checkIsEmpty(sex,'请选择性别!')){
+    //    return false;
+    //}
+    if(!sex[0].checked == true && !sex[1].checked == true){
+        warn('请选择性别');
         return false;
     }
 
     var email = register.email;
     if (checkIsEmpty(email, '请输入邮箱!')) {
         return false;
-    } else if (!/[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-z]+/.test(email.value)) {
+    } else if (!/[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-z]+/.test(email.value)) {
         warn('请输入有效的邮箱名!');
         return false;
     }
@@ -61,17 +65,6 @@ function registerCheck() {
             return false;
         }
     }
-
-    //这里这么验证会炸的!!!
-    //var wechat = register.weixin;
-    //var qq = register.qq;
-    //if(!wechat.value && !qq.value){
-    //    warn('请填写微信号或者QQ号!');
-    //    return false;
-    //}else if(!/[0-9]{5,}/.test(qq.value)){
-    //    warn('请填写有效的QQ号!');
-    //    return false;
-    //}
 
     register.submit();
 }

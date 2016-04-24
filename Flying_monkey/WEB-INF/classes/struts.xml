@@ -14,73 +14,10 @@
     <!--允许上传的最大照片2M,这是KB为单位,1024 * 1024 * 2-->
     <constant name="struts.multipart.maxSize" value="2097152" />
 
-    <!--<package name="Flying_monkey" namespace="/" extends="struts-default">-->
-        <!--<default-action-ref name="index" />-->
-
-        <!--<global-results>-->
-            <!--<result name="mainpage">/index.jsp</result>-->
-        <!--</global-results>-->
-
-        <!--<action name="index">-->
-            <!--<result type="dispatcher">-->
-                <!--/index.jsp-->
-            <!--</result>-->
-        <!--</action>-->
-
-        <!--<action name="actionSupport">-->
-            <!--<result type="chain">-->
-                <!--<param name="actionName">login*</param>-->
-                <!--<param name="namespace">/login</param>-->
-            <!--</result>-->
-        <!--</action>-->
-    <!--</package>-->
-
-    <!--<package name="struts2" namespace="/" extends="struts-default">-->
-        <!--<action name="upload" class="com.hrt.action.Action">-->
-
-            <!--&lt;!&ndash;限制图片的格式和大小&ndash;&gt;-->
-            <!--<interceptor-ref name="fileUpload">-->
-                <!--<param name="allowedTypes">-->
-                    <!--image/bmp,image/gif,image/jpeg,image/jpg-->
-                <!--</param>-->
-                <!--<param name="maximumSize">-->
-                    <!--1024102400-->
-                <!--</param>-->
-            <!--</interceptor-ref>-->
-            <!--&lt;!&ndash;默认的拦截器&ndash;&gt;-->
-            <!--<interceptor-ref name="defaultStack" />-->
-
-            <!--<result>-->
-                <!--/WEB-INF/jsp/uploadResult.jsp-->
-            <!--</result>-->
-            <!--<result name="input">-->
-                <!--/index.jsp-->
-            <!--</result>-->
-        <!--</action>-->
-
-        <!--&lt;!&ndash;<action name="hello" class="com.hrt.action.Action2">&ndash;&gt;-->
-            <!--&lt;!&ndash;<result>&ndash;&gt;-->
-                <!--&lt;!&ndash;/WEB-INF/jsp/login.jsp&ndash;&gt;-->
-            <!--&lt;!&ndash;</result>&ndash;&gt;-->
-        <!--&lt;!&ndash;</action>&ndash;&gt;-->
-    <!--</package>-->
-    <!---->
-    <!--<package name="login" extends="struts-default" namespace="/login">-->
-        <!--<action name="login*" class="com.hrt.action.Action3">-->
-            <!--<result type="dispatcher">-->
-                <!--/WEB-INF/jsp/login.jsp-->
-            <!--</result>-->
-            <!--<result name="error">-->
-                <!--/index.jsp-->
-            <!--</result>-->
-        <!--</action>-->
-    <!--</package>-->
-
-
     <!--项目正式开始-->
     <!--登陆登出-->
     <package name="log" namespace="/log" extends="struts-default">
-        <action name="login" class="com.hrt.action.LogAction" method="login">
+        <action name="login" class="com.hrt.action.LoginAction" method="login">
             <!--登陆成功跳转到首页-->
             <result>
                 /index.jsp
@@ -93,7 +30,7 @@
         </action>
 
         <!--注销用户-->
-        <action name="logout" class="com.hrt.action.LogAction" method="logout">
+        <action name="logout" class="com.hrt.action.LogoutAction" method="logout">
             <!--注销成功回到首页-->
             <result>
                 /index.jsp
@@ -159,7 +96,7 @@
     </package>
 
     <!--发布项目-->
-    <package name="publish" namespace="/publish" extends="json-default">
+    <package name="publish" namespace="/publish" extends="struts-default">
         <!--发布项目-->
         <action name="publish" class="com.hrt.action.PublishAction">
             <!--拦截器接收图片-->
@@ -182,7 +119,7 @@
             <!--</result>-->
             <!--方便演示先回到首页-->
             <result>
-                /index.jsp
+                /index.jsp?responseJson='success'
             </result>
 
             <!--???发布有没有可能失败-->
@@ -215,7 +152,9 @@
     <!--发出尝试申请-->
     <package name="try" namespace="/try" extends="json-default">
         <action name="try" class="com.hrt.action.TryAction">
-            <result type="json" />
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
         </action>
     </package>
 
@@ -225,15 +164,88 @@
                 <param name="root">responseJson</param>
             </result>
         </action>
+
+        <action name="apply">
+            <result>
+                /WEB-INF/jsp/myApply.jsp
+            </result>
+        </action>
+
+        <action name="receive">
+            <result>
+                /WEB-INF/jsp/myReservation.jsp
+            </result>
+        </action>
     </package>
     
     <!--这里要处置 我申请的 和 我收到的申请-->
+    <package name="personalData" namespace="/personalData" extends="json-default">
+        <action name="applyData" class="com.hrt.action.ApplyData">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="receiveData" class="com.hrt.action.ReceiveData">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+    </package>
     
     <!--各种页面跳转-->
     <package name="forword" namespace="/forword" extends="struts-default">
         <action name="toRegister">
             <result>
                 /WEB-INF/jsp/register.jsp
+            </result>
+        </action>
+
+        <action name="toHelp">
+            <result>
+                /WEB-INF/jsp/help.jsp
+            </result>
+        </action>
+    </package>
+    
+    <package name="change" namespace="/change" extends="struts-default">
+        <action name="publish" class="com.hrt.action.PublishChange" method="delete">
+            <result>
+                /WEB-INF/jsp/personCenter.jsp
+            </result>
+
+            <result name="error">
+
+            </result>
+        </action>
+
+        <action name="apply" class="com.hrt.action.ApplyChange" method="delete">
+            <result>
+                /WEB-INF/jsp/myApply.jsp
+            </result>
+
+            <result name="error">
+
+            </result>
+        </action>
+
+        <!--receive_agree receive_refuse-->
+        <action name="receive_agree" class="com.hrt.action.ReceiveChange" method="agree">
+            <result>
+                /WEB-INF/jsp/myReservation.jsp
+            </result>
+
+            <result name="error">
+
+            </result>
+        </action>
+        <action name="receive_refuse" class="com.hrt.action.ReceiveChange" method="refuse">
+            <result>
+                /WEB-INF/jsp/myReservation.jsp
+            </result>
+
+            <result name="error">
+
             </result>
         </action>
     </package>

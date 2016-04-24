@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: haoruitao
@@ -25,66 +26,31 @@
 </head>
 <body>
 <header>
-    <h1 class="heading">试试</h1>
+    <span class="shishi-logo"></span>
 
     <%--这里的路径是干什么的???--%>
+    <%
+        if(session.getAttribute("user") == null){
+    %>
     <a class="button" id="denglu" href="log/login">注册/登陆</a>
-
+    <%
+        }else{
+    %>
     <div id="user">
-        <span id="user-logo"></span>
-        <p id="user-name">user name</p>
+        <span id="user-logo"><img src="images/user-logo.png" /></span>
+        <p id="user-name"><s:property value="#session.user.nickname" /></p>
     </div>
+    <%
+        }
+    %>
 </header>
 <div class="container">
-    <!--
-     <div class="box-wrap" onclick="toDetails();">
-         <figure class="box">
-             <div class="main-img">
-                 <img height="150px" src="image">
-                 <div class="img-desc"><p>value</p></div>
-             </div>
-             <figcaption class="info">
-                 <div class="brief-desc">
-                     <h2 class="name"><span class="category">type</span>name</h2>
-                     <div class="caption">tip</div>
-                 </div>
-                 <div class="host">
-                      <p class="host-name"><span></span>nickname</p>
-                      <p class="price">price元/次</p>
-                      <p class="host-info">major</p>
-                      <span class="wantNum"><span></span>trys</span>
-                 </div>
-             </figcaption>
-         </figure>
-     </div>
-    -->
-
-
-    <%--这里的路径???--%>
-    <%--<div class="box-wrap" onclick="window.location.href('../html/details.html?image=image')">--%>
-        <%--<figure class="box">--%>
-            <%--<div class="main-img">--%>
-                <%--<img height="150px" src="../../images/1.jpg">--%>
-                <%--<div class="img-desc"><p>value</p></div>--%>
-            <%--</div>--%>
-            <%--<figcaption class="info">--%>
-                <%--<div class="brief-desc">--%>
-                    <%--<h2 class="name"><span class="category">type</span>name</h2>--%>
-                    <%--<div class="caption">tip</div>--%>
-                <%--</div>--%>
-                <%--<div class="host">--%>
-                    <%--<p class="host-name"><span></span>nickname</p>--%>
-                    <%--<p class="price">price元/次</p>--%>
-                    <%--<p class="host-info">major</p>--%>
-                    <%--<span class="wantNum"><span></span>trys</span>--%>
-                <%--</div>--%>
-            <%--</figcaption>--%>
-        <%--</figure>--%>
-    <%--</div>--%>
+    <div class="cols" id="col-1"></div>
+    <div class="cols" id="col-2"></div>
 </div>
 <nav>
     <ul>
-        <li><span class="try-icon"></span><a class="button" href="#">试试</a></li>
+        <li><span class="try-icon"></span><a class="button">试试</a></li>
         <li><span class="issue-icon"  onclick="window.location.href='checklogin/checkPublish'"></span><a class="button" onclick="window.location.href='checklogin/checkPublish'">发布</a></li>
         <li><span class="center-icon"></span><a class="button" onclick="window.location.href='checklogin/checkPersonal'">个人中心</a></li>
     </ul>

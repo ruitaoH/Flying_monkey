@@ -11,19 +11,15 @@
     left: 10px;
 }
 
-#continue {
-    right: 10px;
-}
-
-.container{
+.container {
     width: 100%;
-    margin-top: 40px;
+    padding: 40px 0;
 }
 
 form {
     width: 100%;
     position: relative;
-    color: rgb(203,22,3);
+    color: rgb(203, 22, 3);
     font-size: 0.9rem;
 }
 
@@ -33,6 +29,7 @@ form {
     background-color: #aaaaaa;
     border-radius: 10px;
     position: relative;
+    overflow: hidden;
 }
 
 input[name='image'] {
@@ -41,15 +38,23 @@ input[name='image'] {
     top: 0;
     height: 100%;
     width: 100%;
-    display: none;
+    margin: 0;
+    padding: 0;
+    visibility: hidden;
 }
 
 .addImg span {
     position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 60px;
-    height: 60px;
+    left: 10px;
+    bottom: 5px;
+    width: 30px;
+    height: 30px;
+    background: url('../images/icons.png') no-repeat -90px -198px;
+}
+
+.addImg img {
+    height: 100%;
+    width: 100%;
 }
 
 .addImg span:before {
@@ -65,8 +70,8 @@ input[name='image'] {
 }
 
 .addImg p {
-    line-height: 60px;
-    padding-left: 60px;
+    line-height: 40px;
+    padding-left: 40px;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -84,6 +89,7 @@ label {
 
 input {
     height: 26px;
+    width: 58%;
     margin: 0 10px;
     padding: 5px;
     line-height: 16px;
@@ -102,15 +108,12 @@ textarea {
 }
 
 #issue-btn {
-    background-color: #f2992e;
-    height: 30px;
+    background-color: rgb(203, 22, 3);
+    line-height: 30px;
     width: 100px;
-    position: absolute;
-    left: 50%;
-    padding: 5px;
-    margin: 15px 0 0 -50px;
+    margin: 20px auto 0;
+    padding: 0 5px;
     border-radius: 8px;
     color: #ffffff;
-    line-height: 20px;
     text-align: center;
 }

@@ -18,7 +18,7 @@ function checkIssue() {
     var value = issue.value;
     if (checkIsEmpty(value, '请输入物品价值!')) {
         return false;
-    }else if(!/[0-9]+/.test(value.value)){
+    } else if (!/[0-9]+/.test(value.value)) {//改动过
         warn('请输入有效的物品价格!');
         return false;
     }
